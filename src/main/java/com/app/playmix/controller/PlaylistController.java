@@ -1,10 +1,10 @@
 package com.app.playmix.controller;
 
 import com.app.playmix.model.Playlist;
+import com.app.playmix.service.MusicService;
 import com.app.playmix.service.PlaylistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,59 +17,59 @@ public class PlaylistController {
     @Autowired
     private final PlaylistService playlistService;
 
-    public PlaylistController(PlaylistService playlistService) {
+    @Autowired
+    private final MusicService musicService;
+
+    public PlaylistController(PlaylistService playlistService, MusicService musicService) {
         this.playlistService = playlistService;
+        this.musicService = musicService;
     }
 
-    // Retorna a lista de playlists
+    // Exibe a lista de playlists
     @GetMapping
-    public ModelAndView findAll(Model model) {
+    public ModelAndView listPlaylists() {
         List<Playlist> playlists = playlistService.findAllPlaylists();
-        model.addAttribute("playlists", playlists);
-        return new ModelAndView("playlist/list");
+        ModelAndView modelAndView = new ModelAndView("playlist/list");
+        modelAndView.addObject("playlists", playlists);
+        return modelAndView;
     }
 
-    // Busca uma playlist pelo ID
-    @GetMapping("/{id}")
-    public ModelAndView findById(@PathVariable Long id) {
+    // Exibe o formulário para adicionar uma nova playlist
+    @GetMapping("/new")
+    public ModelAndView showCreatePlaylistForm() {
+        ModelAndView modelAndView = new ModelAndView("playlist/form");
+        modelAndView.addObject("playlist", new Playlist());
+        modelAndView.addObject("music", musicService.findAllMusics());
+        return modelAndView;
+    }
+
+    // Processa a criação de uma nova playlist
+    @PostMapping
+    public String savePlaylist(@ModelAttribute Playlist playlist) {
+        playlistService.savePlaylist(playlist);
+        return "redirect:/playlists";
+    }
+
+    // Exibe o formulário para editar uma playlist existente
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditPlaylistForm(@PathVariable Long id) {
         Playlist playlist = playlistService.findByIdPlaylist(id);
-        ModelAndView modelAndView = new ModelAndView("playlist/details");
+        ModelAndView modelAndView = new ModelAndView("playlist/form");
         modelAndView.addObject("playlist", playlist);
         return modelAndView;
     }
 
-    // Exibe o formulário para criar uma nova playlist
-    @GetMapping("/form")
-    public String showCreateForm(Model model) {
-        model.addAttribute("playlist", new Playlist());
-        return "playlist/form"; // Nome da sua view para o formulário
-    }
-
-    // Exibe o formulário para editar uma playlist existente
-    @GetMapping("/form/{id}")
-    public String showUpdateForm(@PathVariable Long id, Model model) {
-        Playlist playlist = playlistService.findByIdPlaylist(id);
-        model.addAttribute("playlist", playlist);
-        return "playlist/form"; // Nome da sua view para o formulário
-    }
-
-    // Cria uma nova playlist
-    @PostMapping
-    public String create(@ModelAttribute Playlist playlist) {
-        playlistService.createPlaylist(playlist);
-        return "redirect:/playlists";
-    }
-
-    // Atualiza uma playlist existente
+    // Processa a atualização de uma playlist existente
     @PostMapping("/{id}")
-    public String update(@PathVariable Long id, @ModelAttribute Playlist playlistDetails) {
-        playlistService.updateByIdPlaylist(id, playlistDetails);
+    public String updatePlaylist(@PathVariable Long id, @ModelAttribute Playlist playlist) {
+        playlist.setId(id);
+        playlistService.savePlaylist(playlist);
         return "redirect:/playlists";
     }
 
     // Remove uma playlist pelo ID
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
+    @PostMapping("/delete/{id}")
+    public String deletePlaylist(@PathVariable Long id) {
         playlistService.deleteByIdPlaylist(id);
         return "redirect:/playlists";
     }
