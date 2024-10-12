@@ -2,12 +2,13 @@ package com.app.playmix.controller;
 
 import com.app.playmix.model.Music;
 import com.app.playmix.service.MusicService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/musics")
@@ -23,9 +24,8 @@ public class MusicController {
     // Retorna a lista de músicas
     @GetMapping
     public ModelAndView findAll() {
-        List<Music> musics = musicService.findAllMusics();
         ModelAndView modelAndView = new ModelAndView("music/list");
-        modelAndView.addObject("musics", musics);
+        modelAndView.addObject("musics", musicService.findAllMusics());
         return modelAndView;
     }
 
@@ -33,14 +33,14 @@ public class MusicController {
     @GetMapping("/{id}")
     public ModelAndView findById(@PathVariable Long id) {
         Music music = musicService.findByIdMusic(id);
-        ModelAndView modelAndView = new ModelAndView("music/detail");
+        ModelAndView modelAndView = new ModelAndView("music/details");
         modelAndView.addObject("music", music);
         return modelAndView;
     }
 
     // Exibe o formulário para criar uma nova música
     @GetMapping("/new")
-    public ModelAndView createForm() {
+    public ModelAndView musicForm() {
         ModelAndView modelAndView = new ModelAndView("music/form");
         modelAndView.addObject("music", new Music());
         return modelAndView;
@@ -48,31 +48,37 @@ public class MusicController {
 
     // Cria uma nova música
     @PostMapping
-    public String create(@ModelAttribute Music music) {
-        musicService.createMusic(music);
-        return "redirect:/musics"; // Redireciona para a lista de músicas
+    public ModelAndView musicSubmit(@Valid @ModelAttribute Music music, BindingResult result) {
+       if (result.hasErrors()){
+           return new ModelAndView("music/form");
+       }
+
+       musicService.createMusic(music);
+       return new ModelAndView("redirect:/musics");
     }
 
     // Exibe o formulário para editar uma música existente
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public ModelAndView editForm(@PathVariable Long id) {
-        Music music = musicService.findByIdMusic(id);
         ModelAndView modelAndView = new ModelAndView("music/form");
-        modelAndView.addObject("music", music);
+        modelAndView.addObject("music", musicService.findByIdMusic(id));
         return modelAndView;
     }
 
-    // Atualiza uma música existente
-    @PutMapping("/{id}")
-    public String update(@PathVariable Long id, @ModelAttribute Music musicDetails) {
-        musicService.updateByIdMusic(id, musicDetails);
-        return "redirect:/musics"; // Redireciona para a lista de músicas
+    // Remove uma música pelo ID
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteMusic(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("music/list");
+        try {
+            musicService.deleteByIdMusic(id);
+            modelAndView.setViewName("redirect:/music");
+            modelAndView.addObject("message", "Música excluída com sucesso.");
+        } catch (RuntimeException e) {
+            modelAndView.addObject("error", e.getMessage());
+        }
+        modelAndView.addObject("musics", musicService.findAllMusics());
+        return modelAndView;
     }
 
-    // Remove uma música pelo ID
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable Long id) {
-        musicService.deleteByIdMusic(id);
-        return "redirect:/musics"; // Redireciona para a lista de músicas
-    }
+
 }

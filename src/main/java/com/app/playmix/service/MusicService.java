@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MusicService {
@@ -52,7 +51,7 @@ public class MusicService {
     public void deleteByIdMusic(Long id) {
         Music music = findByIdMusic(id);
         if (music != null && (music.getPlaylists() != null && !music.getPlaylists().isEmpty())) {
-            throw new RuntimeException("A música está vinculada a uma playlist");
+            throw new RuntimeException("A música está vinculada a uma playlist. Remova-a da playlist primero antes de excluir.");
         }
         musicRepository.deleteById(id);
     }

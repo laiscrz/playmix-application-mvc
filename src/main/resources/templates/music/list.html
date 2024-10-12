@@ -43,6 +43,13 @@
 <!-- Seção Principal -->
 <div class="container mt-5 content">
   <h1>Lista de Músicas</h1>
+
+  <!-- Exibe mensagem de sucesso -->
+  <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+  <!-- Exibe mensagem de erro -->
+  <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
   <a class="btn btn-primary mb-3" th:href="@{/musics/new}">Adicionar Nova Música</a>
 
   <table class="table table-bordered table-striped">
@@ -58,12 +65,9 @@
       <td th:text="${music.titulo}"></td>
       <td th:text="${music.artista}"></td>
       <td>
-        <a th:href="@{/musics/{id}(id=${music.id})}" class="btn btn-info">Ver</a>
-        <a th:href="@{/musics/{id}/edit(id=${music.id})}" class="btn btn-warning">Editar</a>
-        <form th:action="@{/musics/{id}(id=${music.id})}" method="post" style="display:inline;">
-          <input type="hidden" name="_method" value="delete"/>
-          <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
+        <a th:href="@{/musics/{id}(id=${music.id})}" class="btn btn-info">Ver Detalhes</a>
+        <a th:href="@{/musics/edit/{id}(id=${music.id})}" class="btn btn-warning">Editar</a>
+        <a th:href="@{/musics/delete/{id}(id=${music.id})}" class="btn btn-danger">Excluir</a>
       </td>
     </tr>
     </tbody>
