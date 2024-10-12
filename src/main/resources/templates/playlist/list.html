@@ -58,7 +58,6 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Data de Criação</th>
             <th>Ações</th>
@@ -66,11 +65,10 @@
         </thead>
         <tbody>
         <tr th:each="playlist : ${playlists}">
-            <td th:text="${playlist.id}"></td>
             <td th:text="${playlist.nome}"></td>
             <td th:text="${playlist.dataCriacao}"></td>
             <td>
-                <a th:href="@{/playlists/{id}(id=${playlist.id})}" class="btn btn-info">Ver</a>
+                <a th:href="@{/playlists/{id}(id=${playlist.id})}" class="btn btn-info">Detalhes</a>
                 <a th:href="@{/playlists/edit/{id}(id=${playlist.id})}" class="btn btn-warning">Editar</a>
                 <a th:href="@{/playlists/delete/{id}(id=${playlist.id})}" class="btn btn-danger">Excluir</a>
             </td>

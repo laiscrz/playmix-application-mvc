@@ -25,7 +25,7 @@
 
 <div class="container form-container">
   <h1 th:text="${playlist != null} ? 'Editar Playlist' : 'Criar Playlist'"></h1>
-  <form th:action="${playlist != null} ? @{/playlists/${playlist.id}} : @{/playlists}" th:object="${playlist}" method="post" enctype="multipart/form-data">
+  <form th:action="@{/playlists/${playlist.id}}" th:object="${playlist}" method="post" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="nome" class="form-label">Nome da Playlist</label>
       <input type="text" id="nome" name="nome" th:value="${playlist.nome}" class="form-control" required />

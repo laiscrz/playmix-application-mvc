@@ -15,15 +15,10 @@ import java.util.List;
 public class PlaylistController {
 
     @Autowired
-    private final PlaylistService playlistService;
+    private PlaylistService playlistService;
 
     @Autowired
-    private final MusicService musicService;
-
-    public PlaylistController(PlaylistService playlistService, MusicService musicService) {
-        this.playlistService = playlistService;
-        this.musicService = musicService;
-    }
+    private MusicService musicService;
 
     // Exibe a lista de playlists
     @GetMapping
@@ -34,12 +29,21 @@ public class PlaylistController {
         return modelAndView;
     }
 
+    // Exibe os detalhes de uma playlist pelo ID
+    @GetMapping("/{id}")
+    public ModelAndView showPlaylistDetails(@PathVariable Long id) {
+        Playlist playlist = playlistService.findByIdPlaylist(id);
+        ModelAndView modelAndView = new ModelAndView("playlist/details");
+        modelAndView.addObject("playlist", playlist);
+        return modelAndView;
+    }
+
     // Exibe o formulário para adicionar uma nova playlist
     @GetMapping("/new")
     public ModelAndView showCreatePlaylistForm() {
         ModelAndView modelAndView = new ModelAndView("playlist/form");
         modelAndView.addObject("playlist", new Playlist());
-        modelAndView.addObject("music", musicService.findAllMusics());
+        modelAndView.addObject("musics", musicService.findAllMusics());
         return modelAndView;
     }
 
@@ -56,6 +60,7 @@ public class PlaylistController {
         Playlist playlist = playlistService.findByIdPlaylist(id);
         ModelAndView modelAndView = new ModelAndView("playlist/form");
         modelAndView.addObject("playlist", playlist);
+        modelAndView.addObject("musics", musicService.findAllMusics());
         return modelAndView;
     }
 

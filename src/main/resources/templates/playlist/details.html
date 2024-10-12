@@ -15,22 +15,22 @@
   <div class="card">
     <div class="card-body">
       <h5 class="card-title" th:text="${playlist.nome}">Nome da Playlist</h5>
-      <p class="card-text"><strong>ID:</strong> <span th:text="${playlist.id}"></span></p>
       <p class="card-text"><strong>Data de Criação:</strong> <span th:text="${playlist.dataCriacao}"></span></p>
       <p class="card-text"><strong>Músicas:</strong></p>
-      <ul th:if="${playlist.musics}" th:each="music : ${playlist.musics}">
-        <li th:text="${music.titulo}"></li>
+      <ul th:if="${playlist.musicas}" class="list-group">
+        <li th:each="music : ${playlist.musicas}" class="list-group-item">
+          <img th:src="${music.albumArtUrl}" alt="Capa do álbum" style="width: 100px; height: 100px; margin-right: 10px;">
+          <span th:text="${music.titulo}"></span> - <span th:text="${music.artista}"></span>
+        </li>
       </ul>
-      <p th:if="${#lists.isEmpty(playlist.musics)}">Nenhuma música nesta playlist.</p>
+      <p th:if="${#lists.isEmpty(playlist.musicas)}">Nenhuma música nesta playlist.</p>
     </div>
+
   </div>
   <div class="mt-4">
     <a th:href="@{/playlists}" class="btn btn-secondary">Voltar para a lista</a>
-    <a th:href="@{/playlists/form/{id}(id=${playlist.id})}" class="btn btn-warning">Editar Playlist</a>
-    <form th:action="@{/playlists/{id}(id=${playlist.id})}" method="post" style="display: inline;">
-      <input type="hidden" name="_method" value="delete" />
-      <button type="submit" class="btn btn-danger">Excluir Playlist</button>
-    </form>
+    <a th:href="@{/playlists/edit/{id}(id=${playlist.id})}" class="btn btn-warning">Editar Playlist</a>
+    <a th:href="@{/playlists/delete/{id}(id=${playlist.id})}" class="btn btn-danger">Excluir Playlist</a>
   </div>
 </div>
 
