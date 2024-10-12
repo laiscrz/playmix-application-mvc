@@ -1,5 +1,5 @@
-INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2021, 'Fearless (Taylor\'s Version)', 'Taylor Swift', 'Pop', 'Love Story', 'https://link.to/album_art_1.jpg');
-INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2020, 'Future Nostalgia', 'Dua Lipa', 'Pop', 'Don\'t Start Now', 'https://link.to/album_art_2.jpg');
+INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2021, 'Fearless (Taylors Version)', 'Taylor Swift', 'Pop', 'Love Story', 'https://link.to/album_art_1.jpg');
+INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2020, 'Future Nostalgia', 'Dua Lipa', 'Pop', 'Dont Start Now', 'https://link.to/album_art_2.jpg');
 INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2019, 'Lover', 'Taylor Swift', 'Pop', 'You Need to Calm Down', 'https://link.to/album_art_3.jpg');
 INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2018, 'Scorpion', 'Drake', 'Hip-Hop', 'In My Feelings', 'https://link.to/album_art_4.jpg');
 INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2022, 'Planet Her', 'Doja Cat', 'R&B', 'Kiss Me More', 'https://link.to/album_art_5.jpg');
