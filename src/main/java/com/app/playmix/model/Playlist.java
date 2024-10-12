@@ -34,4 +34,9 @@ public class Playlist {
     @Valid
     @Size(min = 1, message = "É necessário selecionar pelo menos uma música")
     private List<Music> musicas;
+
+    @PrePersist
+    protected void onCreate() {
+        this.dataCriacao = LocalDate.now();
+    }
 }
