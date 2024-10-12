@@ -1,0 +1,38 @@
+package com.app.playmix.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "musics")
+public class Music {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank(message = "O título da música é obrigatório.")
+    @Size(min = 2, max = 100, message = "O título da música deve ter entre 2 e 100 caracteres.")
+    private String titulo;
+
+    @NotBlank(message = "O nome do artista é obrigatório.")
+    @Size(min = 2, max = 100, message = "O nome do artista deve ter entre 2 e 100 caracteres.")
+    private String artista;
+
+    private int anoLancamento;
+
+    @NotBlank(message = "O nome do álbum é obrigatório.")
+    @Size(min = 2, max = 100, message = "O nome do álbum deve ter entre 2 e 100 caracteres.")
+    private String album;
+
+    @Size(max = 100, message = "O gênero musical não pode ultrapassar 100 caracteres.")
+    private String genero;
+
+    @NotBlank(message = "A URL da capa do álbum é obrigatória.")
+    @Size(min = 5, max = 255, message = "A URL da capa do álbum deve ter entre 5 e 255 caracteres.")
+    @Column(name = "album_art_url")
+    private String albumArtUrl;
+}
