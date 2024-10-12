@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "playlists")
+@Table(name = "playlist")
 public class Playlist {
 
     @Id
