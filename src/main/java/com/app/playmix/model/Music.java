@@ -1,9 +1,12 @@
 package com.app.playmix.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -35,4 +38,8 @@ public class Music {
     @Size(min = 5, max = 255, message = "A URL da capa do álbum deve ter entre 5 e 255 caracteres.")
     @Column(name = "album_art_url")
     private String albumArtUrl;
+
+    @ManyToMany(mappedBy = "musicas")
+    @Valid
+    private List<Playlist> playlists;
 }
