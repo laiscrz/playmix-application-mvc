@@ -2,83 +2,75 @@ package com.app.playmix.controller;
 
 import com.app.playmix.model.Music;
 import com.app.playmix.service.MusicService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 
 @Controller
 @RequestMapping("/musics")
 public class MusicController {
 
     @Autowired
-    private final MusicService musicService;
-    
-    public MusicController(MusicService musicService) {
-        this.musicService = musicService;
-    }
+    private MusicService musicService;
 
-    // Retorna a lista de músicas
+    // Exibe a lista de músicas
     @GetMapping
-    public ModelAndView findAll() {
+    public ModelAndView listMusics() {
+        List<Music> musics = musicService.findAllMusics();
         ModelAndView modelAndView = new ModelAndView("music/list");
-        modelAndView.addObject("musics", musicService.findAllMusics());
+        modelAndView.addObject("musics", musics);
         return modelAndView;
     }
 
     // Busca uma música pelo ID
     @GetMapping("/{id}")
-    public ModelAndView findById(@PathVariable Long id) {
+    public ModelAndView showMusicDetails(@PathVariable Long id) {
         Music music = musicService.findByIdMusic(id);
         ModelAndView modelAndView = new ModelAndView("music/details");
         modelAndView.addObject("music", music);
         return modelAndView;
     }
 
-    // Exibe o formulário para criar uma nova música
+    // Exibe o formulário para adicionar uma nova música
     @GetMapping("/new")
-    public ModelAndView musicForm() {
+    public ModelAndView showCreateMusicForm() {
         ModelAndView modelAndView = new ModelAndView("music/form");
         modelAndView.addObject("music", new Music());
         return modelAndView;
     }
 
-    // Cria uma nova música
+    // Processa a criação de uma nova música
     @PostMapping
-    public ModelAndView musicSubmit(@Valid @ModelAttribute Music music, BindingResult result) {
-       if (result.hasErrors()){
-           return new ModelAndView("music/form");
-       }
-
-       musicService.createMusic(music);
-       return new ModelAndView("redirect:/musics");
+    public String saveMusic(@ModelAttribute Music music) {
+        musicService.saveMusic(music);
+        return "redirect:/musics";
     }
 
     // Exibe o formulário para editar uma música existente
     @GetMapping("/edit/{id}")
-    public ModelAndView editForm(@PathVariable Long id) {
+    public ModelAndView showEditMusicForm(@PathVariable Long id) {
+        Music music = musicService.findByIdMusic(id);
         ModelAndView modelAndView = new ModelAndView("music/form");
-        modelAndView.addObject("music", musicService.findByIdMusic(id));
+        modelAndView.addObject("music", music);
         return modelAndView;
+    }
+
+    // Processa a atualização de uma música existente
+    @PostMapping("/{id}")
+    public String updateMusic(@PathVariable Long id, @ModelAttribute Music music) {
+        music.setId(id);
+        musicService.saveMusic(music);
+        return "redirect:/musics";
     }
 
     // Remove uma música pelo ID
-    @GetMapping("/delete/{id}")
-    public ModelAndView deleteMusic(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("music/list");
-        try {
-            musicService.deleteByIdMusic(id);
-            modelAndView.setViewName("redirect:/music");
-            modelAndView.addObject("message", "Música excluída com sucesso.");
-        } catch (RuntimeException e) {
-            modelAndView.addObject("error", e.getMessage());
-        }
-        modelAndView.addObject("musics", musicService.findAllMusics());
-        return modelAndView;
+    @PostMapping("/delete/{id}")
+    public String deleteMusic(@PathVariable Long id) {
+        musicService.deleteByIdMusic(id);
+        return "redirect:/musics";
     }
-
-
 }
+

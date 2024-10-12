@@ -27,33 +27,22 @@ public class MusicService {
         return musicRepository.findById(id).orElse(null);
     }
 
-    // Cria uma nova música
-    public Music createMusic(Music music) {
-        return musicRepository.save(music);
+    // Cria ou atualiza uma música
+    public void saveMusic(Music music) {
+        musicRepository.save(music);
     }
 
-    // Atualiza uma música existente
-    public Music updateByIdMusic(Long id, Music musicDetails) {
-        Music music = musicRepository.findById(id).orElse(null);
-        if (music != null) {
-            music.setTitulo(musicDetails.getTitulo());
-            music.setArtista(musicDetails.getArtista());
-            music.setAnoLancamento(musicDetails.getAnoLancamento());
-            music.setAlbum(musicDetails.getAlbum());
-            music.setGenero(musicDetails.getGenero());
-            music.setAlbumArtUrl(musicDetails.getAlbumArtUrl());
-            return musicRepository.save(music);
-        }
-        return null;
-    }
+
 
     // Remove uma música pelo ID
     public void deleteByIdMusic(Long id) {
         Music music = findByIdMusic(id);
         if (music != null && (music.getPlaylists() != null && !music.getPlaylists().isEmpty())) {
-            throw new RuntimeException("A música está vinculada a uma playlist. Remova-a da playlist primero antes de excluir.");
+            throw new RuntimeException("A música está vinculada a uma playlist. Remova-a da playlist primeiro antes de excluir.");
         }
         musicRepository.deleteById(id);
     }
-
 }
+
+
+
