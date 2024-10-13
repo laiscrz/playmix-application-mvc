@@ -282,3 +282,64 @@ az container create --resource-group rg-playmix --name playmixRM552258 --image p
 - **Azure Container Instances**: [https://docs.microsoft.com/pt-br/azure/container-instances/](https://docs.microsoft.com/pt-br/azure/container-instances/) 🌍
 - **Spring Boot Docker Documentation**: [https://spring.io/guides/gs/spring-boot-docker/](https://spring.io/guides/gs/spring-boot-docker/)
 
+---
+
+## 📄 Documentação Adicional
+
+- **Código Fonte**: [GitHub Repository](https://github.com/laiscrz/playmix-application-mvc) 📁
+- **Vídeo de Demonstração**: [YouTube Video]() 📹
+
+## 🫂 Integrantes
+
+Aqui estão os membros do grupo que participaram durante desenvolvimento desta Checkpoint.
+
+* **RM 552258 - Laís Alves da Silva Cruz**
+  - Turma: 2TDSPH
+
+* **RM 552267 - Bianca Leticia Román Caldeira**
+  - Turma: 2TDSPH
+    
+* **RM 552252 – Charlene Aparecida Estevam Mendes Fialho**
+  - Turma: 2TDSPH
+
+* **RM 97916 – Fabricio Torres Antonio**
+  - Turma: 2TDSPH
+
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/laiscrz">
+        <img src="https://avatars.githubusercontent.com/u/133046134?v=4" width="100px;" alt="Lais Alves's photo on GitHub"/><br>
+        <sub>
+          <b>Lais Alves</b>
+        </sub>
+      </a>
+    </td>
+        <td align="center">
+      <a href="https://github.com/biancaroman">
+        <img src="https://avatars.githubusercontent.com/u/128830935?v=4" width="100px;" border-radius='50%' alt="Bianca Román's photo on GitHub"/><br>
+        <sub>
+          <b>Bianca Román</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/charlenefialho">
+        <img src="https://avatars.githubusercontent.com/u/94643076?v=4" width="100px;" border-radius='50%' alt="Charlene Aparecida's photo on GitHub"/><br>
+        <sub>
+          <b>Charlene Aparecida</b>
+        </sub>
+      </a>
+    </td>
+     <td align="center">
+      <a href="https://github.com/Fabs0602">
+        <img src="https://avatars.githubusercontent.com/u/111320639?v=4" width="100px;" border-radius='50%' alt="Fabricio Torres's photo on GitHub"/><br>
+        <sub>
+          <b>Fabricio Torres</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
