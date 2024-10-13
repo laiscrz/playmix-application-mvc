@@ -1,5 +1,6 @@
 package com.app.playmix.controller;
 
+import com.app.playmix.model.GeneroMusical;
 import com.app.playmix.model.Music;
 import com.app.playmix.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,11 @@ public class MusicController {
         }
         modelAndView.addObject("musics", musicService.findAllMusics());
         return modelAndView;
+    }
+
+    @ModelAttribute("generos")
+    public GeneroMusical[] getGeneros(){
+        return GeneroMusical.values();
     }
 }
 

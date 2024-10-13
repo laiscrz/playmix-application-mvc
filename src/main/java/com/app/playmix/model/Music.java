@@ -3,6 +3,7 @@ package com.app.playmix.model;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -31,8 +32,9 @@ public class Music {
     @Size(min = 2, max = 100, message = "O nome do álbum deve ter entre 2 e 100 caracteres.")
     private String album;
 
-    @Size(max = 100, message = "O gênero musical não pode ultrapassar 100 caracteres.")
-    private String genero;
+    @Enumerated(EnumType.STRING)
+    @NotNull(message = "O gênero musical é obrigatório.")
+    private GeneroMusical genero;
 
     @NotBlank(message = "A URL da capa do álbum é obrigatória.")
     @Size(min = 5, max = 255, message = "A URL da capa do álbum deve ter entre 5 e 255 caracteres.")

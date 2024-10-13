@@ -74,8 +74,14 @@
     </div>
     <div class="mb-3">
       <label for="genero" class="form-label">Gênero</label>
-      <input type="text" id="genero" name="genero" th:value="${music.genero}" class="form-control" />
+      <select th:field="*{genero}" class="form-control" id="genero" required>
+        <option value="" disabled selected>Selecione um gênero</option>
+        <th:block th:each="genero : ${generos}">
+          <option th:value="${genero}" th:text="${genero}"></option>
+        </th:block>
+      </select>
     </div>
+
     <div class="mb-3">
       <label for="albumArtUrl" class="form-label">URL da Capa do Álbum</label>
       <input type="url" id="albumArtUrl" name="albumArtUrl" th:value="${music.albumArtUrl}" class="form-control" required />
