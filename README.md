@@ -2,38 +2,6 @@
 
 **Playmix** é uma aplicação de streaming de música que permite aos usuários criar e gerenciar suas próprias playlists de maneira simples e intuitiva. Com uma interface amigável, você pode descobrir novas músicas, explorar diferentes gêneros e personalizar suas coleções musicais de acordo com suas preferências.
 
----
-## 🛤️ Rotas da Aplicação
-
-### 🏠 Home (`index.html`)
-
-- **Página Inicial**: `GET /`  
-  A página inicial do Playmix, com opções para gerenciar músicas e playlists.   
-
-> [!NOTE]
-> **🔗 Acesse a página inicial através da URL:**
-> ```plaintext
-> http://playmixRM552258.azurecontainer.io/
-> ```
-
-### 🎵 Músicas (`MusicController`)
-- **Listar**: `GET /musics`  - Exibe todas as músicas.  
-- **Detalhes**: `GET /musics/{id}`  - Detalhes de uma música.  
-- **Adicionar**: `GET /musics/new`  - Formulário para nova música.  
-- **Salvar**: `POST /musics`  - Cria uma nova música. 🎤  
-- **Editar**: `GET /musics/edit/{id}`  - Formulário para editar música. ✏️  
-- **Atualizar**: `POST /musics/{id}`  - Atualiza uma música existente. 🔄  
-- **Excluir**: `GET /musics/delete/{id}`  - Remove uma música. ❌  
-
-### 🎶 Gerenciamento de Playlists (`PlaylistController`) 
-- **Listar**: `GET /playlists`  - Exibe todas as playlists.  
-- **Detalhes**: `GET /playlists/{id}`  - Detalhes de uma playlist. 📜  
-- **Adicionar**: `GET /playlists/new`  - Formulário para nova playlist. ➕  
-- **Salvar**: `POST /playlists`  - Cria uma nova playlist. 🎼  
-- **Editar**: `GET /playlists/edit/{id}`  - Formulário para editar playlist. ✏️  
-- **Atualizar**: `POST /playlists/{id}`  - Atualiza uma playlist existente. 🔄  
-- **Excluir**: `GET /playlists/delete/{id}`  - Remove uma playlist. ❌  
----
 
 ## 📚 Estrutura do Banco de Dados
 
@@ -65,7 +33,37 @@ erDiagram
     MUSIC ||--o{ PLAYLIST_MUSIC : contains
     PLAYLIST ||--o{ PLAYLIST_MUSIC : includes
 ```
+---
+## 🛤️ Rotas da Aplicação
 
+### 🏠 Home (`index.html`)
+
+- **Página Inicial**: `GET /`  
+  A página inicial do Playmix, com opções para gerenciar músicas e playlists.   
+
+> [!NOTE]
+> **🔗 Acesse a página inicial através da URL:**
+> ```plaintext
+> http://playmixRM552258.azurecontainer.io/
+> ```
+
+### 🎵 Músicas (`MusicController`)
+- **Listar**: `GET /musics`  - Exibe todas as músicas.  
+- **Detalhes**: `GET /musics/{id}`  - Detalhes de uma música.  
+- **Adicionar**: `GET /musics/new`  - Formulário para nova música.  
+- **Salvar**: `POST /musics`  - Cria uma nova música. 🎤  
+- **Editar**: `GET /musics/edit/{id}`  - Formulário para editar música. ✏️  
+- **Atualizar**: `POST /musics/{id}`  - Atualiza uma música existente. 🔄  
+- **Excluir**: `GET /musics/delete/{id}`  - Remove uma música. ❌  
+
+### 🎶 Gerenciamento de Playlists (`PlaylistController`) 
+- **Listar**: `GET /playlists`  - Exibe todas as playlists.  
+- **Detalhes**: `GET /playlists/{id}`  - Detalhes de uma playlist. 📜  
+- **Adicionar**: `GET /playlists/new`  - Formulário para nova playlist. ➕  
+- **Salvar**: `POST /playlists`  - Cria uma nova playlist. 🎼  
+- **Editar**: `GET /playlists/edit/{id}`  - Formulário para editar playlist. ✏️  
+- **Atualizar**: `POST /playlists/{id}`  - Atualiza uma playlist existente. 🔄  
+- **Excluir**: `GET /playlists/delete/{id}`  - Remove uma playlist. ❌  
 ---
 
 ## CRUD - Exemplos 📋
