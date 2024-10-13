@@ -1,19 +1,38 @@
-# 🎶 Playmix 
+# 🎧 Playmix 
 
 **Playmix** é uma aplicação de streaming de música que permite aos usuários criar e gerenciar suas próprias playlists de maneira simples e intuitiva. Com uma interface amigável, você pode descobrir novas músicas, explorar diferentes gêneros e personalizar suas coleções musicais de acordo com suas preferências.
 
 ---
+## 🛤️ Rotas da Aplicação
 
-## 🚀 Funcionalidades
+### 🏠 Home (`index.html`)
 
-- **Criação de Playlists**: Crie playlists personalizadas com suas músicas favoritas. 🎧
-- **Adição de Músicas**: Adicione músicas às suas playlists existentes com facilidade. 🎼
-- **Navegação e Busca**: Descubra novas músicas e playlists rapidamente através de uma busca eficiente. 🔍
-- **Organização**: Organize suas playlists por data de criação, nome ou gênero musical. 📅
-- **Compartilhamento**: Compartilhe suas playlists com amigos e descubra o que eles estão ouvindo! 🔗
-- **Integração de Gêneros**: Explore uma variedade de gêneros musicais para encontrar novas faixas. 🎶
-- **Experiência Personalizada**: Receba recomendações de músicas baseadas nas suas preferências e no seu histórico de reprodução. 🌟
+- **Página Inicial**: `GET /`  
+  A página inicial do Playmix, com opções para gerenciar músicas e playlists.   
 
+> [!NOTE]
+> **🔗 Acesse a página inicial através da URL:**
+> ```plaintext
+> http://playmixRM552258.azurecontainer.io/
+> ```
+
+### 🎵 Músicas (`MusicController`)
+- **Listar**: `GET /musics`  - Exibe todas as músicas.  
+- **Detalhes**: `GET /musics/{id}`  - Detalhes de uma música.  
+- **Adicionar**: `GET /musics/new`  - Formulário para nova música.  
+- **Salvar**: `POST /musics`  - Cria uma nova música. 🎤  
+- **Editar**: `GET /musics/edit/{id}`  - Formulário para editar música. ✏️  
+- **Atualizar**: `POST /musics/{id}`  - Atualiza uma música existente. 🔄  
+- **Excluir**: `GET /musics/delete/{id}`  - Remove uma música. ❌  
+
+### 🎶 Gerenciamento de Playlists (`PlaylistController`) 
+- **Listar**: `GET /playlists`  - Exibe todas as playlists.  
+- **Detalhes**: `GET /playlists/{id}`  - Detalhes de uma playlist. 📜  
+- **Adicionar**: `GET /playlists/new`  - Formulário para nova playlist. ➕  
+- **Salvar**: `POST /playlists`  - Cria uma nova playlist. 🎼  
+- **Editar**: `GET /playlists/edit/{id}`  - Formulário para editar playlist. ✏️  
+- **Atualizar**: `POST /playlists/{id}`  - Atualiza uma playlist existente. 🔄  
+- **Excluir**: `GET /playlists/delete/{id}`  - Remove uma playlist. ❌  
 ---
 
 ## 📚 Estrutura do Banco de Dados
@@ -58,12 +77,12 @@ erDiagram
 Para criar uma nova música, você deve enviar um formulário com as seguintes informações:
 
 ```plaintext
-Título: Hear Me Now
-Artista: Alok
-Ano de Lançamento: 2017
-Álbum: Hear Me Now
-Gênero: Electronic
-URL da Capa do Álbum: https://abrir.link/ZjOqm
+Título: Baby
+Artista: Justin Bieber
+Ano de Lançamento: 2010
+Álbum: My World 2.0
+Gênero: POP
+URL da Capa do Álbum: https://abrir.link/jtJPk
 ```
 
 #### *Playlist*
@@ -71,7 +90,7 @@ URL da Capa do Álbum: https://abrir.link/ZjOqm
 Para criar uma nova playlist, você pode usar o seguinte formulário:
 
 ```plaintext
-Nome: Minhas Favoritas
+Nome: Nostalgia Playlist
 (Selecione as músicas )
 ```
 
@@ -80,12 +99,12 @@ Nome: Minhas Favoritas
 
 #### *Música*
 
-Para ler os detalhes de uma música específica, apertando em 'Detalhes'.
+Para ler os detalhes de uma música específica, aperte em 'Detalhes'.
 
 
 #### *Playlist*
 
-Para ler os detalhes de uma playlist específica, apertando em 'Detalhes'.
+Para ler os detalhes de uma playlist específica, aperte em 'Detalhes'.
 
 
 ### 3. Atualizar ✏️
@@ -95,12 +114,12 @@ Para ler os detalhes de uma playlist específica, apertando em 'Detalhes'.
 Para atualizar as informações de uma música existente, você pode enviar o seguinte formulário:
 
 ```plaintext
-Título: Hear Me Now (Atualizado)
-Artista: Alok 
-Ano de Lançamento: 2018
-Álbum: Hear Me Now
-Gênero: Electronic
-URL da Capa do Álbum: https://abrir.link/ZjOqm
+Título: Baby Music
+Artista: Justin
+Ano de Lançamento: 2011
+Álbum: My World 2.0.0
+Gênero: SOUL
+URL da Capa do Álbum: https://abrir.link/jtJPk
 ```
 
 #### *Playlist*
@@ -108,7 +127,7 @@ URL da Capa do Álbum: https://abrir.link/ZjOqm
 Para atualizar uma playlist existente, você pode usar o seguinte formulário:
 
 ```plaintext
-Nome: Minhas Favoritas Especiais
+Nome: Pop Nostalgia Favoritas
 ```
 
 ### 4. Excluir 🗑️
@@ -119,7 +138,7 @@ Para excluir uma música, aperte em 'Excluir'.
 
 #### *Playlist*
 
-Para excluir uma playlist,  aperte em 'Excluir'.
+Para excluir uma playlist, aperte em 'Excluir'.
 
 
 ---
@@ -156,11 +175,28 @@ CMD ["java", "-jar", "app.jar"]
 
 ### Rodando a Aplicação
 
-Para construir e rodar a imagem, utilize os seguintes comandos:
+Para construir e rodar a imagem Docker, utilize os seguintes comandos:
 
 ```bash
+# Construir a imagem Docker
 docker build -t playmix-app .
-docker run -p 8080:8080 playmix-app
+
+# Rodar a imagem localmente
+docker run --name playmix-app-container -d -p 8080:8080 playmix-app
+```
+
+- **Acessando a aplicação**: Abra `http://localhost:8080` em seu navegador.
+  
+- Para parar e remover o contêiner quando não for mais necessário:
+
+```bash
+docker rm playmix-app-container -f
+```
+
+- Para remover a imagem Docker após o uso:
+
+```bash
+docker rmi playmix-app
 ```
 
 ---
@@ -171,141 +207,69 @@ Para realizar o deploy da aplicação no Azure, você pode utilizar o **Azure Co
 
 ### 🛠️ Pré-requisitos
 
-1. **Conta Azure**: Certifique-se de ter uma conta no [Azure](https://azure.microsoft.com/).
-2. **Azure CLI**: Instale a [Azure CLI](https://docs.microsoft.com/pt-br/cli/azure/install-azure-cli) na sua máquina.
-3. **Docker**: Tenha o Docker instalado e em execução na sua máquina.
+1. **Conta Azure**: Certifique-se de ter uma conta no [Azure](https://azure.microsoft.com/). 🌐
+2. **Azure CLI**: Instale a [Azure CLI](https://docs.microsoft.com/pt-br/cli/azure/install-azure-cli) na sua máquina. 💻
+3. **Docker**: Tenha o Docker instalado e em execução na sua máquina. 🐳
 
-### Passo a Passo
+### 📋 Passo a Passo
 
-#### 1. **Login no Azure**
-
-Abra o terminal e faça login na sua conta Azure:
+#### 1. Criar Grupo de Recursos 🌳
 
 ```bash
-az login
+az group create --name rg-playmix --location eastus
 ```
+- **Análise**: Este comando cria um grupo de recursos chamado `rg-playmix` na região `eastus`.
 
-Siga as instruções no navegador para autenticação.
-
-#### 2. **Criar um Grupo de Recursos**
-
-Crie um grupo de recursos para organizar os serviços:
+#### 2. Criar Azure Container Registry (ACR) 🗄️
 
 ```bash
-az group create --name PlaymixResourceGroup --location eastus
+az acr create --resource-group rg-playmix --name playmixappRM552258 --sku Basic
 ```
+- **Análise**: Cria um registro de contêiner no Azure. Verifique se o nome é único.
 
-- **Parâmetros**:
-    - `--name`: Nome do grupo de recursos.
-    - `--location`: Região do Azure onde os recursos serão criados.
-
-#### 3. **Criar um Azure Container Registry (ACR)**
-
-Crie um registro de contêiner para armazenar sua imagem Docker:
+#### 3. Login no ACR 🔑
 
 ```bash
-az acr create --resource-group PlaymixResourceGroup --name RM552258PlaymixACR --sku Basic
+az acr login --name playmixappRM552258
 ```
+- **Análise**: Realiza o login no ACR.
 
-- **Parâmetros**:
-    - `--resource-group`: Nome do grupo de recursos.
-    - `--name`: Nome único para o ACR (deve ser globalmente único).
-    - `--sku`: Nível de serviço (`Basic`, `Standard`, `Premium`).
-
-#### 4. **Fazer Login no ACR**
-
-Realize o login no ACR para permitir o push da imagem:
+#### 4. Tag e Push da Imagem Docker 📦
 
 ```bash
-az acr login --name RM552258PlaymixACR
+# Tag da imagem
+docker tag playmix-app playmixappRM552258.azurecr.io/playmixappRM552258:v1
+
+# Push da imagem para o ACR
+docker push playmixappRM552258.azurecr.io/playmixappRM552258:v1
 ```
+- **Análise**: Tagueia a imagem local com o repositório ACR e realiza o push.
 
-#### 5. **Taguear a Imagem Docker para o ACR**
-
-Tagueie sua imagem local para apontar para o ACR:
+#### 5. Habilitar Credenciais Administrativas 🔑
 
 ```bash
-docker tag playmix-app RM552258PlaymixACR.azurecr.io/playmix-app:v1
+az acr update -n playmixappRM552258 --admin-enabled true
 ```
-
-- **Formato do Tag**:
-    ```
-    <ACR_Login_Server>/<nome_da_imagem>:<tag>
-    ```
-    Exemplo: `RM552258PlaymixACR.azurecr.io/playmix-app:v1`
-
-#### 6. **Enviar a Imagem para o ACR**
-
-Envie a imagem Docker para o ACR:
+- **Análise**: Habilita o acesso administrativo.
 
 ```bash
-docker push RM552258PlaymixACR.azurecr.io/playmix-app:v1
+az acr credential show -n playmixappRM552258
 ```
+- **Análise**: Mostra as credenciais para acessar o ACR.
 
-#### 7. **Criar um Azure Container Instance (ACI)**
-
-Crie um contêiner no Azure usando a imagem armazenada no ACR:
+#### 6. Criar Azure Container Instance (ACI) 🏗️
 
 ```bash
-az container create \
-    --resource-group PlaymixResourceGroup \
-    --name RM552258PlaymixACI \
-    --image RM552258PlaymixACR.azurecr.io/playmix-app:v1 \
-    --cpu 1 \
-    --memory 1 \
-    --registry-login-server RM552258PlaymixACR.azurecr.io \
-    --registry-username $(az acr credential show --name RM552258PlaymixACR --query "username" --output tsv) \
-    --registry-password $(az acr credential show --name RM552258PlaymixACR --query "passwords[0].value" --output tsv) \
-    --ports 8080
+az container create --resource-group rg-playmix --name playmixRM552258 --image playmixappRM552258.azurecr.io/playmixappRM552258:v1 --cpu 1 --memory 1 --registry-login-server playmixappRM552258.azurecr.io --registry-username playmixappRM552258 --registry-password Sg7PjWqrbKHUJGf+7dEZU6sC5nPOyLJzWSQthg5f69+ACRAU01uS --ip-address Public --dns-name-label playmixRM552258 --ports 8080
 ```
-
-- **Parâmetros**:
-    - `--resource-group`: Nome do grupo de recursos.
-    - `--name`: Nome do ACI (utilize seu RM como prefixo).
-    - `--image`: Caminho completo para a imagem no ACR.
-    - `--cpu`: Número de CPUs alocadas.
-    - `--memory`: Quantidade de memória alocada (em GB).
-    - `--registry-login-server`: Endereço do ACR.
-    - `--registry-username` e `--registry-password`: Credenciais do ACR.
-    - `--ports`: Portas expostas pelo contêiner.
-
-#### 8. **Obter o Endereço IP Público do ACI**
-
-Após a criação do ACI, obtenha o endereço IP para acessar a aplicação:
-
-```bash
-az container show --resource-group PlaymixResourceGroup --name RM552258PlaymixACI --query ipAddress.ip --output tsv
-```
-
-Abra o navegador e acesse `http://<IP>:8080` para visualizar a aplicação em execução na nuvem.
-
-#### 9. **Testar a Aplicação na Nuvem**
-
-- **Operações CRUD**: Realize operações de **Create**, **Read**, **Update** e **Delete** para verificar a funcionalidade da aplicação.
-- **Persistência de Dados**: Certifique-se de que as operações estão refletindo no banco de dados em nuvem.
-
-#### 10. **Gerar Evidências**
-
-- **Evidências Visuais**: Capture screenshots ou grave um vídeo demonstrando as operações CRUD e a interação com o banco de dados.
-- **Scripts e Arquivos**: 
-    - **Script DDL**: Armazene o script SQL no GitHub.
-    - **Código Fonte**: Certifique-se de que todo o código, incluindo o `Dockerfile`, esteja versionado no GitHub.
-    - **Arquivos JSON**: Inclua os arquivos utilizados para testes de API (`GET`, `POST`, `PUT`, `DELETE`) no repositório.
-
-#### 11. **Documentação Final**
-
-- **Folha de Rosto**: Inclua informações como:
-    - Nome do Grupo
-    - RM552258
-    - Nome dos integrantes
-    - Link do GitHub
-    - Link do Vídeo criado
+- **Análise**: Cria uma instância de contêiner no Azure com as especificações fornecidas. **Segurança**: Não exponha suas senhas em scripts. Verifique a unicidade do `dns-name-label`.
 
 ---
 
 ## 📂 Recursos Adicionais
 
-- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/)
-- **Azure Container Registry**: [https://docs.microsoft.com/pt-br/azure/container-registry/](https://docs.microsoft.com/pt-br/azure/container-registry/)
-- **Azure Container Instances**: [https://docs.microsoft.com/pt-br/azure/container-instances/](https://docs.microsoft.com/pt-br/azure/container-instances/)
+- **Docker Documentation**: [https://docs.docker.com/](https://docs.docker.com/) 📖
+- **Azure Container Registry**: [https://docs.microsoft.com/pt-br/azure/container-registry/](https://docs.microsoft.com/pt-br/azure/container-registry/) ☁️
+- **Azure Container Instances**: [https://docs.microsoft.com/pt-br/azure/container-instances/](https://docs.microsoft.com/pt-br/azure/container-instances/) 🌍
 - **Spring Boot Docker Documentation**: [https://spring.io/guides/gs/spring-boot-docker/](https://spring.io/guides/gs/spring-boot-docker/)
+
