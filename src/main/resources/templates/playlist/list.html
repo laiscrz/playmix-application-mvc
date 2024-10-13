@@ -41,6 +41,11 @@
         .btn {
             border-radius: 5px;
         }
+        .btn-add {
+          background: linear-gradient(to right, #FF4F81, #3A7BD5);
+          color: #FFF;
+          border: none;
+        }
         .thead-dark {
             background-color: #343a40;
             color: #fff;
@@ -64,7 +69,7 @@
     <!-- Exibe mensagem de erro -->
     <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-    <a class="btn btn-primary mb-3" th:href="@{/playlists/new}">Criar Nova Playlist</a>
+    <a class="btn btn-add mb-3" th:href="@{/playlists/new}">Criar Nova Playlist</a>
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">

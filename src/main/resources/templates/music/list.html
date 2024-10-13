@@ -24,6 +24,11 @@
     .content {
         flex: 1;
     }
+    .btn-add {
+      background: linear-gradient(to right, #FF4F81, #3A7BD5);
+      color: #FFF;
+      border: none;
+    }
     h1 {
         margin-top: 20px;
         text-align: center;
@@ -55,7 +60,7 @@
   <!-- Exibe mensagem de erro -->
   <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
 
-  <a class="btn btn-primary mb-3" th:href="@{/musics/new}">Adicionar Nova Música</a>
+  <a class="btn btn-add mb-3" th:href="@{/musics/new}">Adicionar Nova Música</a>
 
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
