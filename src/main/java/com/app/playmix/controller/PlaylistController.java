@@ -3,6 +3,7 @@ package com.app.playmix.controller;
 import com.app.playmix.model.Playlist;
 import com.app.playmix.service.MusicService;
 import com.app.playmix.service.PlaylistService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +50,7 @@ public class PlaylistController {
 
     // Processa a criação de uma nova playlist
     @PostMapping
-    public String savePlaylist(@ModelAttribute Playlist playlist) {
+    public String savePlaylist(@Valid @ModelAttribute Playlist playlist) {
         playlistService.savePlaylist(playlist);
         return "redirect:/playlists";
     }

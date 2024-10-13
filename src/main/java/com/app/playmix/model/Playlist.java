@@ -39,4 +39,13 @@ public class Playlist {
     protected void onCreate() {
         this.dataCriacao = LocalDate.now();
     }
+
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
+
 }
