@@ -74,9 +74,16 @@ public class PlaylistController {
     }
 
     // Remove uma playlist pelo ID
-    @PostMapping("/delete/{id}")
-    public String deletePlaylist(@PathVariable Long id) {
-        playlistService.deleteByIdPlaylist(id);
-        return "redirect:/playlists";
+    @GetMapping("/delete/{id}")
+    public ModelAndView deletePlaylist(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("playlist/list");
+        try {
+            playlistService.deleteByIdPlaylist(id);
+            modelAndView.addObject("message", "Playlist excluída com sucesso.");
+        } catch (RuntimeException e) {
+            modelAndView.addObject("error", e.getMessage());
+        }
+        modelAndView.addObject("playlists", playlistService.findAllPlaylists());
+        return modelAndView;
     }
 }

@@ -53,6 +53,12 @@
 <!-- Seção Principal -->
 <div class="container mt-5 content">
     <h1>Lista de Playlists</h1>
+    <!-- Exibe mensagem de sucesso -->
+    <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+
+    <!-- Exibe mensagem de erro -->
+    <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+
     <a class="btn btn-primary mb-3" th:href="@{/playlists/new}">Criar Nova Playlist</a>
 
     <table class="table table-bordered table-striped">
