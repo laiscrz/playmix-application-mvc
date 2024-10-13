@@ -65,7 +65,7 @@
       <td th:text="${music.titulo}"></td>
       <td th:text="${music.artista}"></td>
       <td>
-        <a th:href="@{/musics/{id}(id=${music.id})}" class="btn btn-info">Ver Detalhes</a>
+        <a th:href="@{/musics/{id}(id=${music.id})}" class="btn btn-info">Detalhes</a>
         <a th:href="@{/musics/edit/{id}(id=${music.id})}" class="btn btn-warning">Editar</a>
         <a th:href="@{/musics/delete/{id}(id=${music.id})}" class="btn btn-danger">Excluir</a>
       </td>
