@@ -67,10 +67,19 @@ public class MusicController {
     }
 
     // Remove uma música pelo ID
-    @PostMapping("/delete/{id}")
-    public String deleteMusic(@PathVariable Long id) {
-        musicService.deleteByIdMusic(id);
-        return "redirect:/musics";
+    @GetMapping("/delete/{id}")
+    public ModelAndView deleteMusic(@PathVariable Long id) {
+        ModelAndView modelAndView = new ModelAndView("music/list");
+        try {
+            musicService.deleteByIdMusic(id);
+
+            modelAndView.addObject("message", "Música excluída com sucesso.");
+           //  modelAndView.setViewName("redirect:/music");
+        } catch (RuntimeException e) {
+            modelAndView.addObject("error", e.getMessage());
+        }
+        modelAndView.addObject("musics", musicService.findAllMusics());
+        return modelAndView;
     }
 }
 
