@@ -186,7 +186,6 @@ Para construir e rodar a imagem Docker, utilize os seguintes comandos:
 
 - Construir a imagem Docker
 ```bash
-# Construir a imagem Docker
 docker build -t playmix-app .
 ```
 - Rodar a imagem localmente
@@ -246,7 +245,7 @@ az acr login --name playmixapprm552258
 #### 4. Tag e Push da Imagem Docker 📦
 - Tag da imagem: 
 ```bash
-docker tag playmix-app playmixapprm552258.azurecr.io/playmixappRM552258:v1
+docker tag playmix-app playmixapprm552258.azurecr.io/playmixapprm552258:v1
 ```
 
 - Push da imagem para o ACR:
