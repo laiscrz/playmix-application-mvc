@@ -33,6 +33,11 @@
     h1 {
         margin-top: 20px;
         text-align: center;
+        font-size: 2.5rem;
+        background: linear-gradient(to right, #FF4F81, #3A7BD5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
     }
 
     .card {
@@ -56,7 +61,6 @@
         text-align: center;
         font-size: 1.5rem;
         font-weight: bold;
-        margin-bottom: 20px;
     }
 
     .card-text {
@@ -92,7 +96,7 @@
       <div class="image-container">
         <img th:src="${music.albumArtUrl}" alt="Capa do Álbum" class="img-fluid" />
         <div>
-          <h5 class="card-title" th:text="${music.titulo}">Título da Música</h5>
+          <h3 class="card-title" th:text="${music.titulo}">Título da Música</h3>
           <p class="card-text"><strong>Artista:</strong> <span th:text="${music.artista}"></span></p>
           <p class="card-text"><strong>Ano de Lançamento:</strong> <span th:text="${music.anoLancamento}"></span></p>
           <p class="card-text"><strong>Álbum:</strong> <span th:text="${music.album}"></span></p>
