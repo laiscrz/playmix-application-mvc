@@ -10,5 +10,9 @@ public enum GeneroMusical {
     COUNTRY,
     ELECTRONIC,
     BLUES,
+    FUNK,
+    INDIE,
+    GOSPEL,
+    SOUL,
     METAL;
 }
