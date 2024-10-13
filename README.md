@@ -184,11 +184,13 @@ CMD ["java", "-jar", "target/Playmix-0.0.1-SNAPSHOT.jar"]
 
 Para construir e rodar a imagem Docker, utilize os seguintes comandos:
 
+- Construir a imagem Docker
 ```bash
 # Construir a imagem Docker
 docker build -t playmix-app .
-
-# Rodar a imagem localmente
+```
+- Rodar a imagem localmente
+```bash
 docker run --name playmix-app-container -d -p 8080:8080 playmix-app
 ```
 
@@ -242,12 +244,13 @@ az acr login --name playmixappRM552258
 - **Análise**: Realiza o login no ACR.
 
 #### 4. Tag e Push da Imagem Docker 📦
-
+- Tag da imagem: 
 ```bash
-# Tag da imagem
 docker tag playmix-app playmixappRM552258.azurecr.io/playmixappRM552258:v1
+```
 
-# Push da imagem para o ACR
+- Push da imagem para o ACR:
+```bash
 docker push playmixappRM552258.azurecr.io/playmixappRM552258:v1
 ```
 - **Análise**: Tagueia a imagem local com o repositório ACR e realiza o push.
