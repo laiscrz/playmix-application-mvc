@@ -232,45 +232,45 @@ az group create --name rg-playmix --location eastus
 #### 2. Criar Azure Container Registry (ACR) 🗄️
 
 ```bash
-az acr create --resource-group rg-playmix --name playmixappRM552258 --sku Basic
+az acr create --resource-group rg-playmix --name playmixapprm552258 --sku Basic
 ```
 - **Análise**: Cria um registro de contêiner no Azure. Verifique se o nome é único.
 
 #### 3. Login no ACR 🔑
 
 ```bash
-az acr login --name playmixappRM552258
+az acr login --name playmixapprm552258
 ```
 - **Análise**: Realiza o login no ACR.
 
 #### 4. Tag e Push da Imagem Docker 📦
 - Tag da imagem: 
 ```bash
-docker tag playmix-app playmixappRM552258.azurecr.io/playmixappRM552258:v1
+docker tag playmix-app playmixapprm552258.azurecr.io/playmixappRM552258:v1
 ```
 
 - Push da imagem para o ACR:
 ```bash
-docker push playmixappRM552258.azurecr.io/playmixappRM552258:v1
+docker push playmixapprm552258.azurecr.io/playmixapprm552258:v1
 ```
 - **Análise**: Tagueia a imagem local com o repositório ACR e realiza o push.
 
 #### 5. Habilitar Credenciais Administrativas 🔑
 
 ```bash
-az acr update -n playmixappRM552258 --admin-enabled true
+az acr update -n playmixapprm552258 --admin-enabled true
 ```
 - **Análise**: Habilita o acesso administrativo.
 
 ```bash
-az acr credential show -n playmixappRM552258
+az acr credential show -n playmixapprm552258
 ```
 - **Análise**: Mostra as credenciais para acessar o ACR.
 
 #### 6. Criar Azure Container Instance (ACI) 🏗️
 
 ```bash
-az container create --resource-group rg-playmix --name playmixRM552258 --image playmixappRM552258.azurecr.io/playmixappRM552258:v1 --cpu 1 --memory 1 --registry-login-server playmixappRM552258.azurecr.io --registry-username playmixappRM552258 --registry-password <senha_forecida> --ip-address Public --dns-name-label playmixRM552258 --ports 8080
+az container create --resource-group rg-playmix --name playmixrm552258 --image playmixapprm552258.azurecr.io/playmixapprm552258:v1 --cpu 1 --memory 1 --registry-login-server playmixapprm552258.azurecr.io --registry-username playmixapprm552258 --registry-password <senha_forecida> --ip-address Public --dns-name-label playmixrm552258 --ports 8080
 ```
 - **Análise**: Cria uma instância de contêiner no Azure com as especificações fornecidas. **Segurança**: Não exponha suas senhas em scripts. Verifique a unicidade do `dns-name-label`.
 
