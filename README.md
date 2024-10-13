@@ -260,7 +260,7 @@ az acr credential show -n playmixappRM552258
 #### 6. Criar Azure Container Instance (ACI) 🏗️
 
 ```bash
-az container create --resource-group rg-playmix --name playmixRM552258 --image playmixappRM552258.azurecr.io/playmixappRM552258:v1 --cpu 1 --memory 1 --registry-login-server playmixappRM552258.azurecr.io --registry-username playmixappRM552258 --registry-password Sg7PjWqrbKHUJGf+7dEZU6sC5nPOyLJzWSQthg5f69+ACRAU01uS --ip-address Public --dns-name-label playmixRM552258 --ports 8080
+az container create --resource-group rg-playmix --name playmixRM552258 --image playmixappRM552258.azurecr.io/playmixappRM552258:v1 --cpu 1 --memory 1 --registry-login-server playmixappRM552258.azurecr.io --registry-username playmixappRM552258 --registry-password <senha_forecida> --ip-address Public --dns-name-label playmixRM552258 --ports 8080
 ```
 - **Análise**: Cria uma instância de contêiner no Azure com as especificações fornecidas. **Segurança**: Não exponha suas senhas em scripts. Verifique a unicidade do `dns-name-label`.
 
