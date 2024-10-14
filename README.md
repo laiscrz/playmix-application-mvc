@@ -44,7 +44,7 @@ erDiagram
 > [!NOTE]
 > **🔗 Acesse a página inicial através da URL:**
 > ```plaintext
-> http://playmixRM552258.azurecontainer.io/
+> http://playmixrm552258.eastus.azurecontainer.io:8080
 > ```
 
 ### 🎵 Músicas (`MusicController`)
@@ -287,7 +287,7 @@ az container create --resource-group rg-playmix --name playmixrm552258 --image p
 ## 📄 Documentação Adicional
 
 - **Código Fonte**: [GitHub Repository](https://github.com/laiscrz/playmix-application-mvc) 📁
-- **Vídeo de Demonstração**: [YouTube Video]() 📹
+- **Vídeo de Demonstração**: [YouTube Video](https://www.youtube.com/watch?v=88ot8dEYOY0) 📹
 
 ## 🫂 Integrantes
 
