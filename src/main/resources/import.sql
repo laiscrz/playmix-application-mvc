@@ -4,8 +4,6 @@ INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url
 INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2018, 'Scorpion', 'Drake', 'HIP_HOP', 'In My Feelings', 'https://abrir.link/cxgTc');
 INSERT INTO music (ano_lancamento, album, artista, genero, titulo, album_art_url) VALUES (2022, 'Planet Her', 'Doja Cat', 'POP', 'Kiss Me More', 'https://abrir.link/xRmKc');
 
-
-
 INSERT INTO playlist (data_criacao, nome) VALUES (SYSDATE, 'Minhas Favoritas');
 INSERT INTO playlist (data_criacao, nome) VALUES (SYSDATE, 'Para Relaxar');
 INSERT INTO playlist (data_criacao, nome) VALUES (SYSDATE, 'Workout Playlist');
