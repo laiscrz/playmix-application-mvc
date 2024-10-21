@@ -274,9 +274,7 @@ az container create --resource-group rg-playmix --name playmixrm552258 --image p
 - **Análise**: Cria uma instância de contêiner no Azure com as especificações fornecidas. **Segurança**: Não exponha suas senhas em scripts. Verifique a unicidade do `dns-name-label`.
 
 ### 7. Limpeza dos Recursos 🚮
-
-Para evitar custos desnecessários e manter o ambiente organizado, você deve excluir os recursos que foram criados no Azure. Uma abordagem mais simples, você pode deletar o grupo de recursos diretamente, o que irá remover todos os recursos associados de uma vez:
-
+Para evitar custos desnecessários e manter seu ambiente Azure organizado, exclua o grupo de recursos usando o seguinte comando:
 ```bash
 az group delete --name rg-playmix --yes --no-wait
 ```
