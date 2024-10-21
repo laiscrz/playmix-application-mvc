@@ -1,11 +1,16 @@
 <!-- fragments/header.html -->
-<header th:fragment="header">
+<header th:fragment="header" xmlns:th="http://www.thymeleaf.org">
     <style>
         .navbar {
             background: linear-gradient(to right, #E90074, #4C3BCF);
         }
         .navbar-brand, .nav-link {
             color: #ffffff !important;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .navbar-brand:hover {
+            color: #ffcc00;
+            transform: scale(1.1);
         }
         .nav-link:hover {
             text-decoration: underline;
