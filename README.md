@@ -15,7 +15,7 @@ erDiagram
         String artista "Nome do artista"
         int ano_lancamento "Ano de lançamento"
         String album "Nome do álbum"
-        String genero "Gênero da música"
+        String genero "Gênero da música (varchar, com restrição de valores)"
         String album_art_url "URL da capa do álbum"
     }
 
@@ -32,6 +32,7 @@ erDiagram
 
     MUSIC ||--o{ PLAYLIST_MUSIC : contains
     PLAYLIST ||--o{ PLAYLIST_MUSIC : includes
+
 ```
 ---
 ## 🛤️ Rotas da Aplicação
@@ -280,6 +281,13 @@ az group delete --name rg-playmix --yes --no-wait
 ```
 
 - **Análise**: Quando você deleta o grupo de recursos `rg-playmix`, todos os recursos dentro dele, incluindo a ACI e o ACR, serão excluídos automaticamente. Isso é útil para garantir que não haja recursos residuais. O parâmetro `--no-wait` permite que o comando seja executado em segundo plano, sem esperar pela conclusão do processo.
+---
+
+## 🌐 Imagem da Aplicação Rodando na Nuvem
+
+Aqui está uma captura de tela da aplicação **Playmix** rodando na nuvem:
+
+![Playmix Rodando na Nuvem](https://github.com/user-attachments/assets/3ea6e1ac-feba-4ff7-ad5d-6d01229d37d0)
 
 ---
 
